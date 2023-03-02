@@ -80,6 +80,15 @@ export function App() {
     });
   };
 
+  const totalProducts = () => {
+    let add = 0;
+    let product: carro;
+    for (product of carro) {
+      add += product.price * product.quantity;
+      return add;
+    }
+  };
+
   return (
     <>
       <Header />
@@ -126,7 +135,7 @@ export function App() {
             </table>
           </section>
           <aside>
-            <Summary />
+            <Summary totalProducts={totalProducts} />
           </aside>
         </div>
       </main>
