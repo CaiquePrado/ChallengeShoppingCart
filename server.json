@@ -27,13 +27,6 @@
       "category": "informática",
       "price": 30.9,
       "quantity": 1
-    },
-    {
-      "id": 5,
-      "name": "Redragon keyboard",
-      "category": "informática",
-      "quantity": 1,
-      "price": 239.9
     }
   ]
 }

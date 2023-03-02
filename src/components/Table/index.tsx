@@ -1,3 +1,5 @@
+import { api } from "../../services/api";
+
 interface TableProps {
   product: {
     id: number;
@@ -6,9 +8,10 @@ interface TableProps {
     quantity: number;
     price: number;
   };
+  handleDeleteItemToCart: (id: number) => Promise<void>;
 }
 
-export const Table = ({ product }: TableProps) => {
+export const Table = ({ product, handleDeleteItemToCart }: TableProps) => {
   return (
     <tr>
       <td>
@@ -44,7 +47,10 @@ export const Table = ({ product }: TableProps) => {
         }).format(product.price)}
       </td>
       <td>
-        <button className="remove">
+        <button
+          onClick={() => handleDeleteItemToCart(product.id)}
+          className="remove"
+        >
           <i className="bx bx-x"></i>
         </button>
       </td>

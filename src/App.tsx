@@ -52,6 +52,11 @@ export function App() {
     loadProducst();
   };
 
+  const handleDeleteItemToCart = async (id: number) => {
+    await api.delete(`/cart/${id}`);
+    loadProducst();
+  };
+
   return (
     <>
       <Header />
@@ -79,7 +84,11 @@ export function App() {
                 {carro.length > 0 ? (
                   <>
                     {carro.map((product, index) => (
-                      <Table key={index} product={product} />
+                      <Table
+                        key={index}
+                        product={product}
+                        handleDeleteItemToCart={handleDeleteItemToCart}
+                      />
                     ))}
                   </>
                 ) : (
