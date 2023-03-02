@@ -22,7 +22,7 @@ interface carro {
   name: string;
   category: string;
   quantity: number;
-  prince: number;
+  price: number;
 }
 
 export function App() {
@@ -39,6 +39,19 @@ export function App() {
     loadProducst();
   }, []);
 
+  const productObejct = {
+    id: 5,
+    name: "Redragon keyboard",
+    category: "informática",
+    quantity: 1,
+    price: 239.9,
+  };
+
+  const handleAddItemToCart = async () => {
+    await api.post("/cart", productObejct);
+    loadProducst();
+  };
+
   return (
     <>
       <Header />
@@ -47,7 +60,7 @@ export function App() {
         <div className="content">
           <section>
             <button
-              // onClick={handleAddItemToCart}
+              onClick={handleAddItemToCart}
               style={{ padding: "5px 10px", marginTop: 15 }}
             >
               Adicionar
@@ -63,9 +76,19 @@ export function App() {
                 </tr>
               </thead>
               <tbody>
-                {carro.map((product, index) => (
-                  <Table key={index} product={product} />
-                ))}
+                {carro.length > 0 ? (
+                  <>
+                    {carro.map((product, index) => (
+                      <Table key={index} product={product} />
+                    ))}
+                  </>
+                ) : (
+                  <tr>
+                    <td colSpan={5}>
+                      <b>Carrinho Vazio.</b>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </section>
