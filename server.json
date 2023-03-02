@@ -1,13 +1,6 @@
 {
   "cart": [
     {
-      "id": 1,
-      "name": "hyperX keyboard",
-      "category": "informática",
-      "quantity": 1,
-      "price": 299.99
-    },
-    {
       "id": 2,
       "name": "Logitech keyboard",
       "category": "informática",

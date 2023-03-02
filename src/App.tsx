@@ -17,7 +17,7 @@ todo - cálculo do preço total dos itens inseridos
 todo - FUNCIONALIDADE EXTRA: aplicação de cupom de desconto
 */
 
-interface carro {
+export interface carro {
   id: number;
   name: string;
   category: string;
@@ -48,13 +48,36 @@ export function App() {
   };
 
   const handleAddItemToCart = async () => {
-    await api.post("/cart", productObejct);
-    loadProducst();
+    await api.post("/cart", productObejct).then(() => {
+      loadProducst();
+    });
   };
 
   const handleDeleteItemToCart = async (id: number) => {
-    await api.delete(`/cart/${id}`);
-    loadProducst();
+    await api.delete(`/cart/${id}`).then(() => {
+      loadProducst();
+    });
+  };
+
+  const handleUpdateQuantityToCart = async (product: carro, action: string) => {
+    let productQuantity = product.quantity;
+
+    if (action === "sub") {
+      if (productQuantity === 1) {
+        return;
+      }
+      productQuantity -= 1;
+    }
+    if (action === "sum") {
+      productQuantity += 1;
+    }
+
+    const newQuantity = { ...product, quantity: productQuantity };
+    // delete newQuantity._id
+
+    await api.put(`users/${product.id}`, newQuantity).then(() => {
+      loadProducst();
+    });
   };
 
   return (
@@ -88,6 +111,7 @@ export function App() {
                         key={index}
                         product={product}
                         handleDeleteItemToCart={handleDeleteItemToCart}
+                        handleUpdateQuantityToCart={handleUpdateQuantityToCart}
                       />
                     ))}
                   </>

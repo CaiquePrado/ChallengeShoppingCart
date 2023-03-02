@@ -1,4 +1,4 @@
-import { api } from "../../services/api";
+import { carro } from "../../App";
 
 interface TableProps {
   product: {
@@ -9,9 +9,14 @@ interface TableProps {
     price: number;
   };
   handleDeleteItemToCart: (id: number) => Promise<void>;
+  handleUpdateQuantityToCart: (product: carro, action: string) => Promise<void>;
 }
 
-export const Table = ({ product, handleDeleteItemToCart }: TableProps) => {
+export const Table = ({
+  product,
+  handleDeleteItemToCart,
+  handleUpdateQuantityToCart,
+}: TableProps) => {
   return (
     <tr>
       <td>
@@ -31,11 +36,11 @@ export const Table = ({ product, handleDeleteItemToCart }: TableProps) => {
       </td>
       <td>
         <div className="qty">
-          <button>
+          <button onClick={() => handleUpdateQuantityToCart(product, "sub")}>
             <i className="bx bx-minus"></i>
           </button>
-          <span>2</span>
-          <button>
+          <span>{product.quantity}</span>
+          <button onClick={() => handleUpdateQuantityToCart(product, "sum")}>
             <i className="bx bx-plus"></i>
           </button>
         </div>
