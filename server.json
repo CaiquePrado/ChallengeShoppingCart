@@ -1,0 +1,32 @@
+{
+  "cart": [
+    {
+      "id": 1,
+      "name": "hyperX keyboard",
+      "category": "informática",
+      "quantity": 1,
+      "price": 299.99
+    },
+    {
+      "id": 2,
+      "name": "Logitech keyboard",
+      "category": "informática",
+      "quantity": 1,
+      "price": 123.99
+    },
+    {
+      "id": 3,
+      "name": "Razer keyboard",
+      "category": "informática",
+      "price": 230.99,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "name": "Multilaser keyboard",
+      "category": "informática",
+      "price": 30.9,
+      "quantity": 1
+    }
+  ]
+}
